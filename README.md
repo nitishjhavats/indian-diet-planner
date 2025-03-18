@@ -31,7 +31,7 @@ The application uses the Mifflin-St Jeor equation to calculate your Basal Metabo
 
 ## Screenshots
 
-[Add screenshots of your application here]
+
 
 ## Diet Plan Generation Logic
 
