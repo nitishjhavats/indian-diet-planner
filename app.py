@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from diet_planner import calculate_bmr, calculate_daily_calories, generate_diet_plan
 import base64
 from io import BytesIO
+import os
 
 # Set page config with a more engaging theme
 st.set_page_config(
@@ -171,9 +172,16 @@ with st.sidebar:
 @st.cache_data
 def load_food_data():
     try:
-        return pd.read_csv("foods.csv")
+        # Get the directory of the current script
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        # Create the path to the CSV file
+        csv_path = os.path.join(current_dir, "foods.csv")
+        return pd.read_csv(csv_path)
     except FileNotFoundError:
         st.error("Food database not found. Please make sure foods.csv exists.")
+        return None
+    except Exception as e:
+        st.error(f"Error loading food database: {e}")
         return None
 
 food_data = load_food_data()
